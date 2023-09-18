@@ -248,3 +248,179 @@ If you lose this file, you lose knowing the state of your infrastructure.
 #### Terraform Directory
 
 `.terraform` directory contains binaries of Terraform providers.
+
+## Terraform Cloud
+
+#### Projects and Workspaces
+
+- **Workspace**: A workspace contains everything Terraform needs to manage a given collection of infrastructure, and separate workspaces function like completely separate working directories.
+- **Project**: Projects let you organize your workspaces into groups.
+
+Terraform Cloud has three workflows for managing Terraform runs:
+- UI/VCS-driven run workflow - Workspaces are triggered and directly linked to a VCS repository.
+- API-driven run workflow - Triggered by an API call.
+- CLI-driven run workflow - uses Terraform's standard CLI tools to execute runs in Terraform Cloud
+
+In this project we use CLI Driven run workflow.
+
+#### Migraiting To Terraform Cloud
+
+First run `terraform login` and type `yes` and hit `Enter`
+
+```sh
+$ terraform login
+Terraform will request an API token for app.terraform.io using your browser.
+
+If login is successful, Terraform will store the token in plain text in
+the following file for use by subsequent commands:
+    /home/gitpod/.terraform.d/credentials.tfrc.json
+
+Do you want to proceed?
+  Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+```
+
+Then go to `https://app.terraform.io/app/settings/tokens?source=terraform-login` and generate a token.
+
+```sh
+---------------------------------------------------------------------------------
+
+Terraform must now open a web browser to the tokens page for app.terraform.io.
+
+If a browser does not open this automatically, open the following URL to proceed:
+    https://app.terraform.io/app/settings/tokens?source=terraform-login
+
+
+---------------------------------------------------------------------------------
+```
+
+Copy and paste your token into console.
+
+```sh
+
+Generate a token using your browser, and copy-paste it into this prompt.
+
+Terraform will store the token in plain text in the following file
+for use by subsequent commands:
+    /home/gitpod/.terraform.d/credentials.tfrc.json
+
+Token for app.terraform.io:
+  Enter a value: 
+
+```
+
+Token has been successfully retrieved and saved on our machine.
+
+```sh
+Retrieved token for user adamlisicki
+
+
+---------------------------------------------------------------------------------
+
+                                          -                                
+                                          -----                           -
+                                          ---------                      --
+                                          ---------  -                -----
+                                           ---------  ------        -------
+                                             -------  ---------  ----------
+                                                ----  ---------- ----------
+                                                  --  ---------- ----------
+   Welcome to Terraform Cloud!                     -  ---------- -------
+                                                      ---  ----- ---
+   Documentation: terraform.io/docs/cloud             --------   -
+                                                      ----------
+                                                      ----------
+                                                       ---------
+                                                           -----
+                                                               -
+
+
+   New to TFC? Follow these steps to instantly apply an example configuration:
+
+   $ git clone https://github.com/hashicorp/tfc-getting-started.git
+   $ cd tfc-getting-started
+   $ scripts/setup.sh
+
+```
+
+Add to our `main.tf` file in `terraform` section below lines.
+
+```tf
+terraform {
+  cloud {
+    organization = "ORGANIZATION_NAME"
+
+    workspaces {
+      name = "WORKSPACE_NAME"
+    }
+}
+```
+
+Then run `terraform init` command and enter `yes` if you want to migrate your existing state to Terraform Cloud.
+
+```sh
+$ terraform init
+
+Initializing Terraform Cloud...
+Do you wish to proceed?
+  As part of migrating to Terraform Cloud, Terraform can optionally copy your
+  current workspace state to the configured Terraform Cloud workspace.
+  
+  Answer "yes" to copy the latest state snapshot to the configured
+  Terraform Cloud workspace.
+  
+  Answer "no" to ignore the existing state and just activate the configured
+  Terraform Cloud workspace with its existing state, if any.
+  
+  Should Terraform migrate your existing state?
+
+  Enter a value: yes
+```
+
+After that Terraform Cloud has been initialized and the state has been migrated. 
+
+```sh
+Initializing provider plugins...
+- Reusing previous version of hashicorp/random from the dependency lock file
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Using previously-installed hashicorp/aws v5.17.0
+- Using previously-installed hashicorp/random v3.5.1
+
+Terraform Cloud has been successfully initialized!
+
+You may now begin working with Terraform Cloud. Try running "terraform plan" to
+see any changes that are required for your infrastructure.
+
+If you ever set or change modules or Terraform Settings, run "terraform init"
+again to reinitialize your working directory.
+```
+
+### Issues with Terraform Cloud Login and Gitpod
+
+When attempting to run terraform login it will launch bash a wiswig view to generate a token. However it does not work expected in Gitpod VsCode in the browser.
+
+The workaround is manually generate a token in Terraform Cloud
+
+```
+https://app.terraform.io/app/settings/tokens?source=terraform-login
+```
+
+Then create open the file manually here:
+
+```sh
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+
+Provide the following code (replace your token in the file):
+
+```json
+{
+  "credentials": {
+    "app.terraform.io": {
+      "token": "YOUR-TERRAFORM-CLOUD-TOKEN"
+    }
+  }
+}
+```
