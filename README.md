@@ -263,9 +263,9 @@ Terraform Cloud has three workflows for managing Terraform runs:
 
 In this project we use CLI Driven run workflow.
 
-#### Migraiting To Terraform Cloud
+#### Migrate State To Terraform Cloud
 
-First run `terraform login` and type `yes` and hit `Enter`
+Run `terraform login` and type `yes` and hit `Enter`
 
 ```sh
 $ terraform login
@@ -357,7 +357,7 @@ terraform {
 }
 ```
 
-Then run `terraform init` command and enter `yes` if you want to migrate your existing state to Terraform Cloud.
+Then run `terraform init` command and if you have a state file in your directory then you'll be asked to enter `yes` or `no` if you want to migrate your existing state to Terraform Cloud.
 
 ```sh
 $ terraform init
@@ -424,3 +424,4 @@ Provide the following code (replace your token in the file):
   }
 }
 ```
+We have automated this workaround with the following bash script [bin/generate_tfrc_credentials](./bin/generate_tfrc_credentials)
