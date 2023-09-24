@@ -1,6 +1,7 @@
 # Terraform Beginner Bootcamp 2023
 
-![architecture diagram](arch-diag.png)
+![arch-diag](https://github.com/AdamLisicki/terraform-beginner-bootcamp-2023/assets/96197101/4fca2a83-bc4d-4dda-ac45-21c6fbdac5ba)
+
 
 ## Weekly Journals
 
