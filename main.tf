@@ -1,11 +1,11 @@
 terraform {
-#   cloud {
-#     organization = "TBBorg"
+  cloud {
+    organization = "TBBorg"
 
-#     workspaces {
-#       name = "terra-house-1"
-#     }
-#   }
+    workspaces {
+      name = "terraform-cloud"
+    }
+  }
 }
 
 
