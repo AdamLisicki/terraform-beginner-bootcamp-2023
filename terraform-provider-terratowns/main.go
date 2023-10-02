@@ -96,6 +96,7 @@ func Resource() *schema.Resource {
 		ReadContext: resourceHouseRead,
 		UpdateContext: resourceHouseUpdate,
 		DeleteContext: resourceHouseDelete,
+<<<<<<< HEAD
 		Schema: map[string]*schema.Schema{
 			"name": {
 				Type: schema.TypeString,
@@ -125,11 +126,13 @@ func Resource() *schema.Resource {
 		},
 	}
 	log.Print("Resource:end")
+
 	return resource
 }
 
 
 func resourceHouseCreate(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
+<<<<<<< HEAD
 	log.Print("resourceHouseCreate:start")
 	var diags diag.Diagnostics
 
@@ -183,10 +186,12 @@ func resourceHouseCreate(ctx context.Context, d *schema.ResourceData, m interfac
 
 	homeUUID := responseData["uuid"].(string)
 	d.SetId(homeUUID)
+
 	return diags
 }
 
 func resourceHouseRead(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
+
 	log.Print("resourceHouseRead:start")
 	var diags diag.Diagnostics
 
@@ -233,6 +238,7 @@ func resourceHouseRead(ctx context.Context, d *schema.ResourceData, m interface{
 	}
 
 	log.Print("resourceHouseRead:end")
+
 	return diags
 }
 
@@ -284,6 +290,7 @@ func resourceHouseUpdate(ctx context.Context, d *schema.ResourceData, m interfac
 	d.Set("description", payload["description"])
 	d.Set("content_version", payload["content_version"])
 
+
 	return diags
 }
 
@@ -318,5 +325,6 @@ func resourceHouseDelete(ctx context.Context, d *schema.ResourceData, m interfac
 	d.SetId("")
 
 	log.Print("resourceHouseDelete:end")
+
 	return diags
 }
