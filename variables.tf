@@ -13,16 +13,16 @@ variable "teacherseat_user_uuid" {
   sensitive = true
 }
 
-variable "tft" {
-  type = object({
-    public_path = string
-    content_version = number
-  })
-}
+# variable "tft" {
+#   type = object({
+#     public_path = string
+#     content_version = number
+#   })
+# }
 
-variable "f1_cars" {
-  type = object({
-    public_path = string
-    content_version = number
-  })
-}
+# variable "f1_cars" {
+#   type = object({
+#     public_path = string
+#     content_version = number
+#   })
+# }
