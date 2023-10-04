@@ -1,9 +1,1 @@
 terratowns_endpoint = "https://terratowns.cloud/api"
-tft = {
-  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/tft"
-  content_version = 2 
-}
-f1_cars = {
-  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/f1_cars"
-  content_version = 1 
-}
