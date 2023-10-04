@@ -1,6 +1,9 @@
 terratowns_endpoint = "https://terratowns.cloud/api"
-bucket_name = "26q7kr0oyykbg7vwkn3okhkwm6jsyqc8"
-index_html_filepath = "/workspace/terraform-beginner-bootcamp-2023/public/index.html"
-error_html_filepath = "/workspace/terraform-beginner-bootcamp-2023/public/error.html"
-assets_path = "/workspace/terraform-beginner-bootcamp-2023/public/assets"
-content_version = 1
+tft = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/tft"
+  content_version = 2 
+}
+f1_cars = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/f1_cars"
+  content_version = 1 
+}
