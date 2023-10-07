@@ -1,5 +1,16 @@
 # Terraform Beginner Bootcamp 2023 - Week 2
 
+- [Working with Ruby](#working-with-ruby)
+  - [Bundler](#bundler)
+    - [Install Gems](#install-gems)
+    - [Executing Ruby Scripts in the Context of Bundler](#executing-ruby-scripts-in-the-context-of-bundler)
+  - [Sinatra](#sinatra)
+- [Terratowns Mock Server](#terratowns-mock-server)
+  - [Running the Web Server](#running-the-web-server)
+- [CRUD](#crud)
+- [Install Custom Provider](#install-custom-provider)
+- [How to Create or Remove a Home](#how-to-create-or-remove-a-home)
+
 ## Working with Ruby
 
 ### Bundler
@@ -61,6 +72,11 @@ Terraform Provider resources utilize CRUD.
 CRUD stands for Create, Read Update, and Delete
 
 https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+
+
+## Install Custom Provider
+
+To build the custom provider `terratown` we need to run script `build_provider` that is located in the `bin` directory.
 
 ## How to Create or Remove a Home
 
