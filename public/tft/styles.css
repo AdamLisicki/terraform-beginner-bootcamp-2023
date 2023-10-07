@@ -1,0 +1,76 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #0D202B;  /* Or your desired background color */
+    color: #fff; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%; /* Full width of the page */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows the container to grow */
+}
+
+.image-container {
+    width: 100%; /* Full width */
+    overflow: hidden;
+}
+
+.image-container img {
+    width: auto;
+    height: 500px; /* Keep the original height of the image */
+    display: block; /* Remove any default spacing around the image */
+}
+
+.menu {
+    width: 100%; /* Full width */
+    background-color: #112531;
+    display: flex; /* Use Flexbox */
+    justify-content: center; /* Center the menu items horizontally */
+    align-items: center; /* Center the menu items vertically */
+    flex-wrap: wrap; /* Allows the menu items to wrap to the next line if there's not enough space */
+    padding: 1px;
+}
+
+.menu a {
+    color: white;
+    text-align: center;
+    padding: 0 16px; /* Adjust as needed */
+    text-decoration: none;
+    margin: 0; /* Adjust the space between items if needed */
+    display: inline-flex; /* Flexbox for links to easily center the text */
+    align-items: center; /* Center the link text vertically */
+    height: 100%; /* Makes each link take up the full height of the .menu */
+    box-sizing: border-box; /* This ensures padding and border are included in the height */
+    line-height: 2;
+}
+
+.menu a:hover, .menu a.active {
+    background-color: #f14501;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    padding: 20px 0;
+}
+
+p {
+    text-align: center;
+    color: #555;
+}
+
+iframe {
+    display: block;  /* Removes default iframe spacing */
+    width: 100%;
+    flex-grow: 1; /* This will make the iframe grow and take all available space */
+    border: none;
+    background-color: #0D202B; /* Optional, based on your theme */
+    min-height: 0; /* Ensures the iframe doesn't try to grow beyond its container */
+}
