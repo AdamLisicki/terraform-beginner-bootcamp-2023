@@ -3,11 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to play Teamfight Tactics</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Image and Menu Website</title>
 </head>
 <body>
-    <h1>How to play Teamfight Tactics</h1>
-    <img src="/assets/tft_1.jpg" />
-    <img src="/assets/tft_2.jpg" />
+    <div class="container">
+        <!-- Image at the top -->
+        <div class="image-container">
+            <img src="/assets/tft-banner.jpg"  alt="Description of image">
+        </div>
+
+        <!-- Menu below the image -->
+        <div class="menu">
+            <a href="/pages/home.html" target="contentframe">Home</a>
+            <a href="/pages/how-to-play.html" target="contentframe">How To Play</a>
+            <a href="/pages/champions.html" target="contentframe">Champions</a>
+            <a href="/pages/items.html" target="contentframe">Items</a>
+            <a href="/pages/traits.html" target="contentframe">Traits</a>
+            <a href="/pages/compositions.html" target="contentframe">Compositions</a>
+        </div>
+        <iframe name="contentframe" src="/pages/home.html" frameborder="0" width="100%" height="auto"></iframe>
+
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let menuLinks = document.querySelectorAll('.menu a');
+    
+        menuLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                menuLinks.forEach(function(innerLink) {
+                    innerLink.classList.remove('active');
+                });
+    
+                this.classList.add('active');
+            });
+        });
+    });
+    </script>
 </body>
 </html>

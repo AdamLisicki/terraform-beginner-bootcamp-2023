@@ -46,6 +46,31 @@ resource "aws_s3_object" "upload_assets" {
     ignore_changes = [etag]
   }
 }
+resource "aws_s3_object" "upload_pages" {
+  for_each = fileset("${var.public_path}/pages","*.{html}")
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "pages/${each.key}"
+  source = "${var.public_path}/pages/${each.key}"
+  etag = filemd5("${var.public_path}/pages/${each.key}")
+  content_type = "text/html"
+  lifecycle {
+    replace_triggered_by = [terraform_data.content_version.output]
+    ignore_changes = [etag]
+  }
+}
+
+resource "aws_s3_object" "upload_css" {
+  for_each = fileset("${var.public_path}/pages/css","*.{css}")
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "pages/css/${each.key}"
+  source = "${var.public_path}/pages/css/${each.key}"
+  etag = filemd5("${var.public_path}/pages/css/${each.key}")
+  content_type = "text/css"
+  lifecycle {
+    replace_triggered_by = [terraform_data.content_version.output]
+    ignore_changes = [etag]
+  }
+}
 
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
@@ -55,6 +80,14 @@ resource "aws_s3_object" "error_html" {
   source = "${var.public_path}/error.html"
   content_type = "text/html"
   etag = filemd5("${var.public_path}/error.html")
+}
+
+resource "aws_s3_object" "styles_css" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "styles.css"
+  source = "${var.public_path}/styles.css"
+  content_type = "text/css"
+  etag = filemd5("${var.public_path}/styles.css")
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy
